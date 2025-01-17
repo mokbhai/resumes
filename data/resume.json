@@ -23,11 +23,15 @@
         "value": "github.com/mokbhai",
         "url": "https://github.com/mokbhai"
       },
-
       {
         "icon": "map",
         "value": "Lovely Professional University, Phagwara, Punjab 144411",
         "url": "https://maps.google.com/?q=Lovely+Professional+University+Phagwara+Punjab"
+      },
+      {
+        "icon": "website",
+        "value": "Portfolio",
+        "url": "https://mokshitjain.netlify.app/"
       }
     ]
   },
