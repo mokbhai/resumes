@@ -4,7 +4,75 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Professional Resume</title>
-    <link id="theme-style" rel="stylesheet" href="styles/styles2.css" />
+    <link id="theme-style" rel="stylesheet" href="styles/styles.css" />
+    <style>
+      /* Copyright notice (web only) */
+      .copyright {
+        text-align: center;
+        padding: 20px;
+        color: var(--text-secondary);
+        font-size: 14px;
+        margin-top: 40px;
+      }
+
+      .copyright a {
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      .copyright a:hover {
+        text-decoration: underline;
+      }
+
+      /* Button styles */
+      .button-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+        z-index: 1000;
+      }
+
+      .action-btn {
+        padding: 10px 20px;
+        background: var(--theme-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .action-btn:hover {
+        background: var(--theme-color);
+        filter: brightness(90%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .action-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          padding: 0;
+        }
+
+        .resume-container {
+          padding: 20px;
+          box-shadow: none;
+        }
+
+        .button-container {
+          display: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="button-container">
@@ -17,8 +85,22 @@
       <!-- Content will be populated by JavaScript -->
     </div>
 
+    <div class="copyright">
+      Copyright © 2025 Mokshit Jain. This resume builder is
+      <a
+        href="https://github.com/mokbhai/resumes"
+        target="_blank"
+        rel="noopener noreferrer"
+        >open source</a
+      >.
+    </div>
+
     <script>
-      const styles = ["styles/styles.css", "styles/styles2.css"];
+      const styles = [
+        "styles/styles.css",
+        "styles/styles1.css",
+        "styles/styles2.css",
+      ];
       let currentStyleIndex = 0;
 
       document
@@ -201,19 +283,63 @@
         .addEventListener("click", function () {
           const style = document.createElement("style");
           style.textContent = `
-            @media print {
-              body { margin: 0; padding: 0; }
-              .resume-container {
-                width: 210mm;
-                min-height: 297mm;
-                padding: 20mm;
-                margin: 0 auto;
+            @page {
+              margin-bottom: 0.5in;
+              size: A4;
+              counter-increment: page;
+              @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
               }
-              .button-container { display: none; }
+            }
+
+            body {
+              margin: 0;
+              padding: 0;
+              background-color: white;
+            }
+
+            .resume-container {
+              padding: 0;
+              margin: 0;
+              border: 0;
+            }
+            
+            .two-column-grid {
+              display: grid;
+            }
+
+            .button-container,
+            .copyright {
+              display: none;
             }
           `;
           document.head.appendChild(style);
+
+          // Add print header/footer
+          const header = document.createElement("div");
+          header.className = "print-header";
+          header.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span>MOKSHIT JAIN - Resume</span>
+              <span style="font-size: 8pt;">${new Date().toLocaleDateString()}</span>
+            </div>
+          `;
+
+          const footer = document.createElement("div");
+          footer.className = "print-footer";
+          footer.innerHTML = `
+            <span href="https://mokshitjain.netlify.app">https://mokshitjain.netlify.app</span>
+          `;
+
+          document.body.appendChild(header);
+          document.body.appendChild(footer);
+
           window.print();
+
+          // Clean up
+          document.body.removeChild(header);
+          document.body.removeChild(footer);
+          document.head.removeChild(style);
         });
     </script>
   </body>
