@@ -2,7 +2,11 @@
 
 A modern, responsive resume builder that generates a clean and professional-looking resume. Built with HTML, CSS, and vanilla JavaScript, this project offers multiple themes and color schemes while maintaining a professional appearance.
 
-![Resume Preview](preview.png)
+## 📺 Demo Video
+
+Watch our demo video to see the Resume Builder in action:
+
+[![Resume Preview](https://img.youtube.com/vi/o6feTekgDAc/0.jpg)](https://youtu.be/o6feTekgDAc)
 
 ## 🌟 Features
 
@@ -18,6 +22,7 @@ A modern, responsive resume builder that generates a clean and professional-look
 ## 🚀 Quick Start
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/mokbhai/resumes.git
 ```
@@ -25,6 +30,7 @@ git clone https://github.com/mokbhai/resumes.git
 2. Update your information in `src/data/resume.json`
 
 3. Open `src/index.html` in a browser or serve using a local server:
+
 ```bash
 # Using Python
 python -m http.server 3000
@@ -69,6 +75,7 @@ Click the "Change Color" button to cycle through different color schemes. Colors
 ## 📱 Responsive Design
 
 The resume is fully responsive and adapts to:
+
 - Desktop screens
 - Tablets
 - Mobile devices
@@ -77,6 +84,7 @@ The resume is fully responsive and adapts to:
 ## 🖨️ Printing
 
 To generate a PDF:
+
 1. Click the "Download PDF" button
 2. Use your browser's print dialog
 3. Select "Save as PDF"
