@@ -100,6 +100,15 @@ The layout is optimized for both A4 and Letter paper sizes.
 - Mobile-first approach
 - Print-specific styles
 
+## 🤝 Contributors
+
+We appreciate the contributions from the following individuals:
+
+<a href="https://github.com/mokbhai">
+  <img src="https://avatars.githubusercontent.com/mokbhai" alt="Mokshit Jain" width="50" height="50" style="border-radius: 50%;" />
+</a>
+<!-- Add more contributors as needed -->
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
