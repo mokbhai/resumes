@@ -75,7 +75,7 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 
     <!-- Existing styles -->
-    <link id="theme-style" rel="stylesheet" href="styles/styles.css" />
+    <link id="theme-style" rel="stylesheet" href="styles/styles2.css" />
     <style>
       /* Copyright notice (web only) */
       .copyright {
@@ -243,17 +243,37 @@
 
               <section class="half-section">
                 <h3 class="section-title">Education</h3>
-                <div class="education-item">
-                  <div class="degree">${data.education.degree}</div>
-                  <div class="major">${data.education.major}</div>
-                  <div class="school">${data.education.school}</div>
-                  <div class="education-details">
-                    <span>${data.education.graduationDate}</span>
-                    <span>GPA: ${data.education.gpa}</span>
+                  <div class="work-item">
+                    <div class="job-header">
+                      <h4 class="job-title">${data.education.degree}</h4>
+                      <div class="company-project">${
+                        data.education.school
+                      }</div>
+                    </div>
+                    <h4 class="job-title">${data.education.major}</h4>
+                    <div class="date-location">
+                      <span>${data.education.graduationDate}</span>
+                      <span>${data.education.gpa}</span>
+                    </div>
                   </div>
-                </div>
               </section>
             </div>
+
+            <section>
+              <h3 class="section-title">Skills</h3>
+              <div class="skills-container">
+                ${data.skills
+                  .map(
+                    (skill) => `
+                  <div class="skill-group">
+                    <span class="skill-title">${skill.category}:</span>
+                    <span class="skill-text">${skill.items}</span>
+                  </div>
+                `
+                  )
+                  .join("")}
+              </div>
+            </section>
 
             <section>
               <h3 class="section-title">Work Experience</h3>
@@ -323,22 +343,6 @@
                 </ul>
               </div>
             </section>
-
-            <section>
-              <h3 class="section-title">Skills</h3>
-              <div class="skills-container">
-                ${data.skills
-                  .map(
-                    (skill) => `
-                  <div class="skill-group">
-                    <span class="skill-title">${skill.category}:</span>
-                    <span class="skill-text">${skill.items}</span>
-                  </div>
-                `
-                  )
-                  .join("")}
-              </div>
-            </section>
           `;
         } catch (error) {
           console.error("Error loading resume data:", error);
@@ -365,7 +369,7 @@
 
             body {
               margin: 0;
-              padding: 0;
+              padding: 10px;
               background-color: white;
             }
 
