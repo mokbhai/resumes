@@ -73,7 +73,6 @@
   ],
   "achievements": [
     "Secured 1st position in CipherThon hackathon for developing Hireza, an AI-powered job matching platform",
-    "Completed 300+ DSA problems on LeetCode and GeeksforGeeks",
     "Finalist for Medha 2023 Hackathon with Thrombocizer Device"
   ],
   "skills": [
@@ -82,12 +81,12 @@
       "items": "TypeScript, JavaScript, Node.js, Git, Docker"
     },
     {
-      "category": "Back-End Technologies",
-      "items": "Nest.js, Node.js, Express.js"
-    },
-    {
       "category": "Front-End Development",
       "items": "React.js, HTML, TailwindCSS"
+    },
+    {
+      "category": "Back-End Technologies",
+      "items": "Nest.js, Node.js, Express.js"
     },
     {
       "category": "Databases",
