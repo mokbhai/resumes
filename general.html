@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resume</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Poppins:wght@400;700&family=Montserrat:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles/styles6.css" />
     <style>
       /* Controls styling */
@@ -17,6 +21,25 @@
         padding: 10px;
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .font-select {
+        padding: 8px 16px;
+        border: 1px solid var(--primary-color);
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        color: var(--primary-color);
+        background: white;
+      }
+
+      .color-picker {
+        padding: 8px;
+        width: 60px;
+        height: 35px;
+        border: 1px solid var(--primary-color);
+        border-radius: 4px;
+        cursor: pointer;
       }
 
       .controls button {
@@ -48,19 +71,49 @@
 
     <!-- Controls -->
     <div class="controls">
-      <button onclick="changeStyle()">Change Style</button>
+      <select
+        class="font-select"
+        onchange="changeFont(this.value)"
+        title="Change font"
+      >
+        <option value="Roboto, sans-serif">Roboto</option>
+        <option value="Open Sans, sans-serif">Open Sans</option>
+        <option value="Lato, sans-serif">Lato</option>
+        <option value="Poppins, sans-serif">Poppins</option>
+        <option value="Montserrat, sans-serif">Montserrat</option>
+        <option value="Source Sans Pro, sans-serif">Source Sans Pro</option>
+      </select>
+      <input
+        type="color"
+        class="color-picker"
+        value="#2d2f92"
+        onchange="changeThemeColor(this.value)"
+        title="Change theme color"
+      />
       <button onclick="downloadPDF()">Download PDF</button>
     </div>
 
     <script>
-      // Style switching
-      const styles = ["styles/styles6.css"];
-      let currentStyleIndex = 0;
+      // Font switching
+      function changeFont(fontFamily) {
+        document.documentElement.style.setProperty("--font-family", fontFamily);
+      }
 
-      function changeStyle() {
-        currentStyleIndex = (currentStyleIndex + 1) % styles.length;
-        document.querySelector('link[rel="stylesheet"]').href =
-          styles[currentStyleIndex];
+      // Color theme switching
+      function changeThemeColor(color) {
+        document.documentElement.style.setProperty("--primary-color", color);
+        document.documentElement.style.setProperty("--secondary-color", color);
+
+        // Update control styles
+        const controls = document.querySelectorAll(
+          ".controls button, .controls input, .controls select"
+        );
+        controls.forEach((control) => {
+          control.style.borderColor = color;
+          if (control.tagName === "BUTTON" || control.tagName === "SELECT") {
+            control.style.color = color;
+          }
+        });
       }
 
       // PDF Download
@@ -78,7 +131,7 @@
 
       async function loadResume() {
         try {
-          const response = await fetch("data/generalResume.json");
+          const response = await fetch("data/aiCv.json");
           const data = await response.json();
           renderResume(data);
         } catch (error) {
@@ -102,7 +155,13 @@
         resume.innerHTML = `
                 <!-- Header -->
                 <header>
+                <span style="display: flex; flex-direction: row;">
                     <h1 class="name">${data.basics.name}</h1>
+                    <a style="align-self: center; margin-left: 10px;">${
+                      data.basics.title
+                    }</a>
+                </span>
+                    
                     <div class="contact-info">
                         <div class="contact-left">
                             <div class="contact-item">
