@@ -146,19 +146,40 @@
 
       function renderResume(data) {
         const resume = document.getElementById("resume");
-        if (!data || !data.basics) {
+        // Validate data structure
+        if (!data) {
           console.error("Invalid resume data structure:", data);
-          resume.innerHTML = "Invalid resume data structure";
+          resume.innerHTML = `
+            <div style="color: red; padding: 20px;">
+              Error: Invalid resume data structure. Please check the JSON format.
+            </div>
+          `;
           return;
         }
+
+        // Safely get nested values
+        const safeGet = (obj, path) => {
+          return path.split(".").reduce((acc, part) => acc && acc[part], obj);
+        };
+
+        // Safe find for contact items
+        const findContact = (type) => {
+          const contact = data.basics?.contact?.find((i) => i.icon === type);
+          return {
+            url: contact?.url || "#",
+            value: contact?.value || `No ${type} provided`,
+          };
+        };
 
         resume.innerHTML = `
                 <!-- Header -->
                 <header>
                 <span style="display: flex; flex-direction: row;">
-                    <h1 class="name">${data.basics.name}</h1>
+                    <h1 class="name">${
+                      data.basics?.name || "Name Not Provided"
+                    }</h1>
                     <a style="align-self: center; margin-left: 10px;">${
-                      data.basics.title
+                      data.basics?.title || ""
                     }</a>
                 </span>
                     
@@ -166,55 +187,27 @@
                         <div class="contact-left">
                             <div class="contact-item">
                                 <span>LinkedIn:</span>
-                                <a href="${
-                                  data.basics.contact.find(
-                                    (i) => i.icon === "linkedin"
-                                  ).url
-                                }">
-                                    ${
-                                      data.basics.contact.find(
-                                        (i) => i.icon === "linkedin"
-                                      ).value
-                                    }
+                                <a href="${findContact("linkedin").url}">
+                                    ${findContact("linkedin").value}
                                 </a>
                             </div>
                             <div class="contact-item">
                                 <span>GitHub:</span>
-                                <a href="${
-                                  data.basics.contact.find(
-                                    (i) => i.icon === "github"
-                                  ).url
-                                }">
-                                    ${
-                                      data.basics.contact.find(
-                                        (i) => i.icon === "github"
-                                      ).value
-                                    }
+                                <a href="${findContact("github").url}">
+                                    ${findContact("github").value}
                                 </a>
                             </div>
                         </div>
                         <div class="contact-right">
                             <div class="contact-item">
                                 <span>Email:</span>
-                                <a href="${
-                                  data.basics.contact.find(
-                                    (i) => i.icon === "email"
-                                  ).url
-                                }">
-                                    ${
-                                      data.basics.contact.find(
-                                        (i) => i.icon === "email"
-                                      ).value
-                                    }
+                                <a href="${findContact("email").url}">
+                                    ${findContact("email").value}
                                 </a>
                             </div>
                             <div class="contact-item">
                                 <span>Mobile:</span>
-                                <span>${
-                                  data.basics.contact.find(
-                                    (i) => i.icon === "phone"
-                                  ).value
-                                }</span>
+                                <span>${findContact("phone").value}</span>
                             </div>
                         </div>
                     </div>
@@ -225,13 +218,15 @@
                 <!-- Skills -->
                 <section>
                     <h2>SKILLS</h2>
-                    ${data.skills
+                    ${(data.skills || [])
                       .map(
                         (skill) => `
                         <div class="skill-group">
-                            <span class="skill-category">${skill.category}</span>
+                            <span class="skill-category">${
+                              skill?.category || "Skill Category"
+                            }</span>
                             <span class="separator">|</span>
-                            <span>${skill.items}</span>
+                            <span>${skill?.items || "No items listed"}</span>
                         </div>
                     `
                       )
@@ -243,30 +238,40 @@
                 <!-- Experience -->
                 <section>
                     <h2>EXPERIENCE</h2>
-                    ${data.experience
+                    ${(data.experience || [])
                       .map(
                         (exp) => `
                         <div class="experience-item">
                             <div class="header-line">
-                                <h3>${exp.title}</h3>
-                                <span class="date">${exp.date}</span>
+                                <h3>${exp?.title || "Position"}</h3>
+                                <span class="date">${
+                                  exp?.date || "Date not specified"
+                                }</span>
                             </div>
                             <div class="subheader-line">
-                                <span class="company">${exp.company}</span>
-                                <span class="location">${exp.location}</span>
+                                <span class="company">${
+                                  exp?.company || "Company"
+                                }</span>
+                                <span class="location">${
+                                  exp?.location || "Location not specified"
+                                }</span>
                             </div>
                             ${
-                              exp.technologies
+                              exp?.technologies
                                 ? `
                             <div class="tech-stack">
-                                <span class="tech-label">${exp.technologies.label}</span>
-                                <span class="tech-items">${exp.technologies.items}</span>
+                                <span class="tech-label">${
+                                  exp.technologies?.label || "Technologies:"
+                                }</span>
+                                <span class="tech-items">${
+                                  exp.technologies?.items || "Not specified"
+                                }</span>
                             </div>
                             `
                                 : ""
                             }
                             <ul>
-                                ${exp.achievements
+                                ${(exp?.achievements || [])
                                   .map(
                                     (achievement) => `
                                     <li>${achievement}</li>
@@ -340,18 +345,26 @@
                     <h2>EDUCATION</h2>
                     <div class="education-item">
                         <div class="header-line">
-                            <h3>${data.education.school}</h3>
+                            <h3>${
+                              safeGet(data, "education.school") ||
+                              "School not specified"
+                            }</h3>
                             <span class="location">Punjab, India</span>
                         </div>
                         <div class="subheader-line">
-                            <span>${data.education.degree}, ${
-          data.education.major
+                            <span>${
+                              safeGet(data, "education.degree") || "Degree"
+                            }, ${
+          safeGet(data, "education.major") || "Major"
         }</span>
                             <span class="date">${
-                              data.education.graduationDate
+                              safeGet(data, "education.graduationDate") ||
+                              "Dates not specified"
                             }</span>
                         </div>
-                        <div class="details">CGPA: ${data.education.gpa}</div>
+                        <div class="details">CGPA: ${
+                          safeGet(data, "education.gpa") || "Not specified"
+                        }</div>
                     </div>
                 </section>
             `;
