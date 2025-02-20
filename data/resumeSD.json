@@ -1,7 +1,7 @@
 {
   "basics": {
     "name": "MOKSHIT JAIN",
-    "title": "Versatile Developer",
+    "title": "Software Developer, IOT engineer",
     "contact": [
       {
         "icon": "email",
@@ -22,10 +22,15 @@
         "icon": "github",
         "value": "github.com/mokbhai",
         "url": "https://github.com/mokbhai"
+      },
+      {
+        "icon": "website",
+        "value": "Portfolio",
+        "url": "https://mokshitjain.netlify.app/"
       }
     ]
   },
-  "summary": "Results-driven computer science student and a versatile developer with a foundation in software development, keen interest in AI/ML. Delevered 2+ fullstack project with intregrated support with AI and NLP, focusing on fast and real-time performance. Seeking AI/ML internship opportunity.",
+  "summary": "Results-driven computer science student graduating 2026. Delivered 5+ full-stack applications with focus on scalable architecture and real-time performance. Seeking software engineering internship.",
   "education": {
     "degree": "Bachelor of Technology",
     "major": "Computer Science",
@@ -35,41 +40,34 @@
   },
   "experience": [
     {
-      "title": "Freelancer (Developer)",
+      "title": "Freelancer (Web Developer)",
       "company": "Ministry of Defense",
       "date": "November 2024 - January 2025",
       "location": "LPU, Punjab, IN",
       "achievements": [
-        "Implemented Image-based processing system for vehicle management, handling 10,000+ daily requests",
-        "Accelerated reporting time from 48 hours to few minutes and boosting efficiency by 85%",
+        "Architected mission-critical vehicle management system, processing 10,000+ daily movements across 100+ checkpoints",
+        "Accelerated processing time from 48 hours to 5 minutes, boosting efficiency 85%",
         "Decreased unauthorized access through implementation of MFA, session management, and role-based access controls"
       ]
     },
     {
-      "title": "Freelancer (Project lead, Developer)",
+      "title": "Freelancer (Project lead, Full Stack Developer)",
       "company": "Innovation Studio",
       "date": "June 2024 - August 2024",
       "location": "LPU, Punjab, IN",
       "achievements": [
-        "Developed AI-powered whatsapp messaging system, schedulting the compiling of report and delevering it.",
-        "Implemented automated text analysis"
+        "Architected MERN-stack event platform increasing registration efficiency 80% and eliminating 15 hours weekly manual work",
+        "Delivered ₹1.5 lakh revenue through automated registration system, payment integration, and messaging APIs"
       ]
     }
   ],
   "projects": [
     {
       "title": "Thrombocizer",
-      "role": "IOT Engineer",
+      "role": "Developer",
       "achievements": [
-        "Engineered real-time control platform with capacity to manage 1,000 IoT devices with sub-second latency"
-      ]
-    },
-    {
-      "title": "Hireza",
-      "role": "Fullstack Developer",
-      "achievements": [
-        "Built on OpenAI apis and resume parsing system",
-        "Implemented AI-powered candidate matching algorithm achieving 90% accuracy in job recommendations"
+        "Engineered real-time control platform managing 10,000 IoT devices with sub-second latency",
+        "Optimized ESP32 firmware achieving 99.9% uptime and 60% reduced power consumption"
       ]
     }
   ],
@@ -80,23 +78,35 @@
   "skills": [
     {
       "category": "Core Proficiencies",
-      "items": "JavaScript, Node.js, Git, Docker"
+      "items": "TypeScript, JavaScript, Node.js, Git, Docker"
     },
     {
-      "category": "Soft Skills",
-      "items": "Problem Solving, Research, Teamwork, Communication, Adaptability"
+      "category": "Front-End Development",
+      "items": "React.js, HTML, TailwindCSS"
     },
     {
-      "category": "AI/ML",
-      "items": "Python, Fine tuning, Prompt engineering, LLMs, OpenAI & Gemini apis"
+      "category": "Back-End Technologies",
+      "items": "Nest.js, Node.js, Express.js"
     },
     {
-      "category": "Fullstack Development",
-      "items": "React.js, TailwindCSS, Nest.js, Node.js, Express.js"
+      "category": "Databases",
+      "items": "MongoDB, SQL, Redis"
+    },
+    {
+      "category": "DevOps",
+      "items": "Git, Docker"
+    },
+    {
+      "category": "Microcontrollers",
+      "items": "ESP32, Arduino, ESP8266"
     },
     {
       "category": "Operating Systems",
       "items": "Mac, Ubuntu, Windows"
+    },
+    {
+      "category": "Soft Skills",
+      "items": "Teamwork, Leadership, Time Management, Adaptability"
     }
   ]
 }

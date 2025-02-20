@@ -1,0 +1,210 @@
+:root {
+  --primary-color: #47357F;
+  --text-primary: #2D3748;
+  --text-secondary: #4A5568;
+  --link-color: #4A5568;
+  --border-color: #CBD5E0;
+  --line-height: 1.4;
+  --section-gap: 1rem;
+}
+
+/* Base styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  line-height: var(--line-height);
+  color: var(--text-primary);
+  padding: 2rem;
+  margin: 0;
+  background: white;
+}
+
+.resume-container {
+  max-width: 8.5in;
+  margin: 0 auto;
+  padding: 0.75in 1in;
+}
+
+/* Header */
+.name {
+  font-size: 32px;
+  color: var(--primary-color);
+  margin: 0 0 1rem 0;
+  font-weight: bold;
+}
+
+/* Contact info */
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: var(--section-gap);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--link-color);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.contact-item:hover {
+  text-decoration: underline;
+}
+
+/* Section styles */
+section {
+  margin-bottom: var(--section-gap);
+}
+
+.section-title {
+  font-size: 16px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+  margin: 1rem 0 0.5rem 0;
+  font-weight: bold;
+}
+
+/* Skills section */
+.skills-container {
+  display: block;
+}
+
+.skill-group {
+  margin-bottom: 0.25rem;
+}
+
+.skill-title {
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+}
+
+.skill-text {
+  color: var(--text-secondary);
+}
+
+/* Work & Projects */
+.work-item,
+.project-item {
+  margin-bottom: 1rem;
+}
+
+.job-title,
+.project-title {
+  font-weight: bold;
+  margin: 0;
+  display: inline;
+}
+
+.company-project {
+  font-weight: normal;
+  color: var(--text-secondary);
+  display: inline;
+}
+
+.date-location {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 0.25rem 0;
+}
+
+/* Lists */
+.bullet-points {
+  margin: 0.25rem 0;
+  padding-left: 1.25rem;
+}
+
+.bullet-points li {
+  margin-bottom: 0.25rem;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Education */
+.education-item {
+  margin-bottom: 1rem;
+}
+
+.degree {
+  font-weight: bold;
+  margin: 0;
+  display: inline;
+}
+
+.school {
+  display: inline;
+  margin-left: 0.5rem;
+}
+
+.location {
+  float: right;
+  color: var(--text-secondary);
+}
+
+/* Print styles */
+@media print {
+  @page {
+    margin: 0.5in;
+    size: letter;
+  }
+
+  body {
+    padding: 0;
+    background: white;
+  }
+
+  .resume-container {
+    padding: 0;
+    max-width: none;
+  }
+
+  .contact-item {
+    color: var(--text-primary);
+  }
+
+  section {
+    break-inside: avoid;
+  }
+
+  .button-container {
+    display: none;
+  }
+
+  /* Page numbers */
+  @page {
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+    }
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  .resume-container {
+    padding: 1rem;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .date-location {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .location {
+    float: none;
+  }
+} 

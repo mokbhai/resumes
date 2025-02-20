@@ -34,26 +34,6 @@
       property="og:description"
       content="Professional resume of Mokshit Jain - Full Stack Developer and IoT Engineer with expertise in MERN stack, IoT devices, and scalable architecture."
     />
-    <meta
-      property="og:image"
-      content="https://mokshitjain.netlify.app/preview.png"
-    />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://mokshitjain.netlify.app/" />
-    <meta
-      property="twitter:title"
-      content="Mokshit Jain - Software Developer & IoT Engineer"
-    />
-    <meta
-      property="twitter:description"
-      content="Professional resume of Mokshit Jain - Full Stack Developer and IoT Engineer with expertise in MERN stack, IoT devices, and scalable architecture."
-    />
-    <meta
-      property="twitter:image"
-      content="https://mokshitjain.netlify.app/preview.png"
-    />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
@@ -171,6 +151,8 @@
         "styles/styles.css",
         "styles/styles1.css",
         "styles/styles2.css",
+        "styles/styles3.css",
+        "styles/styles4.css",
       ];
       let currentStyleIndex = 0;
 
@@ -391,23 +373,23 @@
           document.head.appendChild(style);
 
           // Add print header/footer
-          const header = document.createElement("div");
-          header.className = "print-header";
-          header.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span>MOKSHIT JAIN - Resume</span>
-              <span style="font-size: 8pt;">${new Date().toLocaleDateString()}</span>
-            </div>
-          `;
+          // const header = document.createElement("div");
+          // header.className = "print-header";
+          // header.innerHTML = `
+          //   <div style="display: flex; justify-content: space-between; align-items: center;">
+          //     <span>MOKSHIT JAIN - Resume</span>
+          //     <span style="font-size: 8pt;">${new Date().toLocaleDateString()}</span>
+          //   </div>
+          // `;
 
-          const footer = document.createElement("div");
-          footer.className = "print-footer";
-          footer.innerHTML = `
-            <span href="https://mokshitjain.netlify.app">https://mokshitjain.netlify.app</span>
-          `;
+          // const footer = document.createElement("div");
+          // footer.className = "print-footer";
+          // footer.innerHTML = `
+          //   <span href="https://mokshitjain.netlify.app">https://mokshitjain.netlify.app</span>
+          // `;
 
-          document.body.appendChild(header);
-          document.body.appendChild(footer);
+          // document.body.appendChild(header);
+          // document.body.appendChild(footer);
 
           window.print();
 
