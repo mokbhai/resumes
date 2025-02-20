@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume</title>
+    <link rel="stylesheet" href="styles/styles6.css" />
+    <style>
+      /* Controls styling */
+      .controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+        background: white;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .controls button {
+        padding: 8px 16px;
+        border: 1px solid var(--primary-color);
+        background: white;
+        color: var(--primary-color);
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .controls button:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      @media print {
+        .controls {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="resume" class="resume-container">
+      <!-- Template structure stays the same -->
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button onclick="changeStyle()">Change Style</button>
+      <button onclick="downloadPDF()">Download PDF</button>
+    </div>
+
+    <script>
+      // Style switching
+      const styles = ["styles/styles6.css"];
+      let currentStyleIndex = 0;
+
+      function changeStyle() {
+        currentStyleIndex = (currentStyleIndex + 1) % styles.length;
+        document.querySelector('link[rel="stylesheet"]').href =
+          styles[currentStyleIndex];
+      }
+
+      // PDF Download
+      function downloadPDF() {
+        // Hide controls before printing
+        document.querySelector(".controls").style.display = "none";
+
+        window.print();
+
+        // Show controls after printing
+        setTimeout(() => {
+          document.querySelector(".controls").style.display = "flex";
+        }, 1000);
+      }
+
+      async function loadResume() {
+        try {
+          const response = await fetch("data/generalResume.json");
+          const data = await response.json();
+          renderResume(data);
+        } catch (error) {
+          console.error("Error loading resume data:", error);
+          document.getElementById("resume").innerHTML = `
+            <div style="color: red; padding: 20px;">
+              Error loading resume data. Please check if the JSON file exists and is valid.
+            </div>
+          `;
+        }
+      }
+
+      function renderResume(data) {
+        const resume = document.getElementById("resume");
+        if (!data || !data.basics) {
+          console.error("Invalid resume data structure:", data);
+          resume.innerHTML = "Invalid resume data structure";
+          return;
+        }
+
+        resume.innerHTML = `
+                <!-- Header -->
+                <header>
+                    <h1 class="name">${data.basics.name}</h1>
+                    <div class="contact-info">
+                        <div class="contact-left">
+                            <div class="contact-item">
+                                <span>LinkedIn:</span>
+                                <a href="${
+                                  data.basics.contact.find(
+                                    (i) => i.icon === "linkedin"
+                                  ).url
+                                }">
+                                    ${
+                                      data.basics.contact.find(
+                                        (i) => i.icon === "linkedin"
+                                      ).value
+                                    }
+                                </a>
+                            </div>
+                            <div class="contact-item">
+                                <span>GitHub:</span>
+                                <a href="${
+                                  data.basics.contact.find(
+                                    (i) => i.icon === "github"
+                                  ).url
+                                }">
+                                    ${
+                                      data.basics.contact.find(
+                                        (i) => i.icon === "github"
+                                      ).value
+                                    }
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-right">
+                            <div class="contact-item">
+                                <span>Email:</span>
+                                <a href="${
+                                  data.basics.contact.find(
+                                    (i) => i.icon === "email"
+                                  ).url
+                                }">
+                                    ${
+                                      data.basics.contact.find(
+                                        (i) => i.icon === "email"
+                                      ).value
+                                    }
+                                </a>
+                            </div>
+                            <div class="contact-item">
+                                <span>Mobile:</span>
+                                <span>${
+                                  data.basics.contact.find(
+                                    (i) => i.icon === "phone"
+                                  ).value
+                                }</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="divider"></div>
+
+                <!-- Skills -->
+                <section>
+                    <h2>SKILLS</h2>
+                    ${data.skills
+                      .map(
+                        (skill) => `
+                        <div class="skill-group">
+                            <span class="skill-category">${skill.category}</span>
+                            <span class="separator">|</span>
+                            <span>${skill.items}</span>
+                        </div>
+                    `
+                      )
+                      .join("")}
+                </section>
+
+                <div class="divider"></div>
+
+                <!-- Experience -->
+                <section>
+                    <h2>EXPERIENCE</h2>
+                    ${data.experience
+                      .map(
+                        (exp) => `
+                        <div class="experience-item">
+                            <div class="header-line">
+                                <h3>${exp.title}</h3>
+                                <span class="date">${exp.date}</span>
+                            </div>
+                            <div class="subheader-line">
+                                <span class="company">${exp.company}</span>
+                                <span class="location">${exp.location}</span>
+                            </div>
+                            ${
+                              exp.technologies
+                                ? `
+                            <div class="tech-stack">
+                                <span class="tech-label">${exp.technologies.label}</span>
+                                <span class="tech-items">${exp.technologies.items}</span>
+                            </div>
+                            `
+                                : ""
+                            }
+                            <ul>
+                                ${exp.achievements
+                                  .map(
+                                    (achievement) => `
+                                    <li>${achievement}</li>
+                                `
+                                  )
+                                  .join("")}
+                            </ul>
+                        </div>
+                    `
+                      )
+                      .join("")}
+                </section>
+
+                <div class="divider"></div>
+
+                <!-- Projects -->
+                <section>
+                    <h2>PROJECTS</h2>
+                    ${data.projects
+                      .map(
+                        (project) => `
+                        <div class="project-item">
+                            <div class="header-line">
+                                <h3>${project.title}</h3>
+                            </div>
+                            ${
+                              project.technologies
+                                ? `
+                            <div class="tech-stack">
+                                <span class="tech-label">${project.technologies.label}</span>
+                                <span class="tech-items">${project.technologies.items}</span>
+                            </div>
+                            `
+                                : ""
+                            }
+                            <ul>
+                                ${project.achievements
+                                  .map(
+                                    (achievement) => `
+                                    <li>${achievement}</li>
+                                `
+                                  )
+                                  .join("")}
+                            </ul>
+                        </div>
+                    `
+                      )
+                      .join("")}
+                </section>
+
+                <div class="divider"></div>
+
+                <!-- Achievements -->
+                <section>
+                    <h2>ACHIEVEMENTS</h2>
+                    <ul class="achievements-list">
+                        ${data.achievements
+                          .map(
+                            (achievement) => `
+                                <li>${achievement}</li>
+                            `
+                          )
+                          .join("")}
+                    </ul>
+                </section>
+
+                <div class="divider"></div>
+
+                <!-- Education -->
+                <section>
+                    <h2>EDUCATION</h2>
+                    <div class="education-item">
+                        <div class="header-line">
+                            <h3>${data.education.school}</h3>
+                            <span class="location">Punjab, India</span>
+                        </div>
+                        <div class="subheader-line">
+                            <span>${data.education.degree}, ${
+          data.education.major
+        }</span>
+                            <span class="date">${
+                              data.education.graduationDate
+                            }</span>
+                        </div>
+                        <div class="details">CGPA: ${data.education.gpa}</div>
+                    </div>
+                </section>
+            `;
+      }
+
+      // Load resume when page loads
+      document.addEventListener("DOMContentLoaded", loadResume);
+    </script>
+  </body>
+</html>

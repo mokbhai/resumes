@@ -15,7 +15,7 @@
       },
       {
         "icon": "linkedin",
-        "value": "mokshit-jain",
+        "value": "linkedin.com/in/mokshit-jain",
         "url": "https://www.linkedin.com/in/mokshit-jain/"
       },
       {
@@ -25,7 +25,7 @@
       },
       {
         "icon": "website",
-        "value": "Portfolio",
+        "value": "mokshitjain.netlify.app",
         "url": "https://mokshitjain.netlify.app/"
       }
     ]
@@ -40,8 +40,12 @@
   },
   "experience": [
     {
-      "title": "Freelancer (Web Developer)",
-      "company": "Ministry of Defense",
+      "title": "Developer",
+      "technologies": {
+        "label": "Technologies used:",
+        "items": "Nest.js, Next.js, PostgreSQL, Image Processing, Microservices architecture"
+      },
+      "company": "Innovation Studio & Ministry of Defense",
       "date": "November 2024 - January 2025",
       "location": "LPU, Punjab, IN",
       "achievements": [
@@ -51,7 +55,11 @@
       ]
     },
     {
-      "title": "Freelancer (Project lead, Full Stack Developer)",
+      "title": "Project lead, Full Stack Developer",
+      "technologies": {
+        "label": "Technologies used:",
+        "items": "React.js, Node.js, Whatsapp bots, Microservices architecture"
+      },
       "company": "Innovation Studio",
       "date": "June 2024 - August 2024",
       "location": "LPU, Punjab, IN",
@@ -64,6 +72,10 @@
   "projects": [
     {
       "title": "Thrombocizer",
+      "technologies": {
+        "label": "Technologies used:",
+        "items": "ESP32, Node.js, Websockets"
+      },
       "role": "Developer",
       "achievements": [
         "Engineered real-time control platform managing 10,000 IoT devices with sub-second latency",
@@ -72,6 +84,10 @@
     },
     {
       "title": "Hireza",
+      "technologies": {
+        "label": "Technologies used:",
+        "items": "MERN Stack, OpenAI API, resume parser"
+      },
       "role": "Developer",
       "achievements": [
         "Launched job-matching platform reducing hiring time 20% and increasing application rates 10% for 1,000+ users",
@@ -80,6 +96,10 @@
     },
     {
       "title": "SwiftAid",
+      "technologies": {
+        "label": "Technologies used:",
+        "items": "MERN Stack, OpenAI API, Maps API"
+      },
       "role": "Developer",
       "achievements": [
         "Developed emergency response platform decreasing patient wait times 25% through real-time location tracking",
